@@ -1,64 +1,70 @@
 #include<stdio.h>
 #include<stdlib.h>
-//STL next permutation »ù±¾Ë¼Ïë
+/****************************************************
+ å®ç°äº†STLçš„next permutation å’Œ all permutation`å…¨æ’åˆ—`
+*****************************************************/
+
+/**********å®šä¹‰********************/
+//STL next permutation åŸºæœ¬æ€æƒ³
 int next_permutation(int *begin,int *end);
-//STLËùÓĞpermutation½á¹û
+//STLæ‰€æœ‰permutationç»“æœ
 void all_permutation(int arr[],int n);
-//½»»»ÔªËØ`ÒıÓÃ`
+//äº¤æ¢å…ƒç´ `å¼•ç”¨`
 void util_swap(int *i_,int *k_);
-//×ªÖÃ`ÒıÓÃ`
+//è½¬ç½®`å¼•ç”¨`
 void util_reverse(int *j_, int *end_);
-//¶ÑÅÅĞò
+//å †æ’åº
 void sift(int r[],int k,int m);
 void heapSort(int r[],int n);
 
+/**************å‡½æ•°å®ç°**************/
 int main()
 {
 	int arr[4] = {1,1,2,3};
 	all_permutation(arr,4);
 	getchar();
 }
-//STL next permutation »ù±¾Ë¼Ïë
-//begin ÆğÊ¼µØÖ· end ×îºóÒ»¸öÔªËØµØÖ·ÏòºóÆ«ÒÆ1
+//STL next permutation åŸºæœ¬æ€æƒ³
+//begin èµ·å§‹åœ°å€ end æœ€åä¸€ä¸ªå…ƒç´ åœ°å€å‘ååç§»1
 int next_permutation(int *begin,int *end)
 {
 	int *i = begin,*j,*k;
-	//0»òÕßÒ»¸öÔªËØ£¬Ã»ÓĞÏÂÒ»¸öÅÅÁĞ
+	//0æˆ–è€…ä¸€ä¸ªå…ƒç´ ï¼Œæ²¡æœ‰ä¸‹ä¸€ä¸ªæ’åˆ—
 	if(i == end || ++i == end) return 0;
 	for(i = end - 1;i != begin;)
 	{
-		//·¢ÏÖÏÂÒ»¸öÔö³¤¶Ô(i,j)
+		//å‘ç°ä¸‹ä¸€ä¸ªå¢é•¿å¯¹(i,j)
 		j = i--;
-		//´ÓºóÍùÇ°ÉıĞòÊ±²»Ö´ĞĞÏÂÃæ·¢ÏÖ(i,j)µÄ²Ù×÷Óï¾ä
+		//ä»åå¾€å‰å‡åºæ—¶ä¸æ‰§è¡Œä¸‹é¢å‘ç°(i,j)çš„æ“ä½œè¯­å¥
 		if(!(*i < *j)) continue;
-		//·¢ÏÖ²»Ğ¡ÓÚiµÄk
+		//å‘ç°ä¸å°äºiçš„k
 		for(k = end; !(*i < *(--k)););
 		util_swap(i,k);
-		//ÏÖÔÚ[j,end)·¶Î§ÊÇ½µĞò
+		//ç°åœ¨[j,end)èŒƒå›´æ˜¯é™åº
 		util_reverse(j,end);
 		return 1;
 	}
-	//Èç¹û¿ªÊ¼ÊÇ½µĞò
+	//å¦‚æœå¼€å§‹æ˜¯é™åº
 	util_reverse(begin,end);
 	return 0;
 }
-//½»»»ÔªËØ`ÒıÓÃ`
+//äº¤æ¢å…ƒç´ `å¼•ç”¨`
 void util_swap(int *i,int *k)
 {
 	int tem = *i;
 	*i = *k;
 	*k = tem;
 }
-//×ªÖÃ`ÒıÓÃ`
+//è½¬ç½®`å¼•ç”¨`
 void util_reverse(int *j_, int *end_)
 {
 	int tem;
-	//Æ«ÒÆÒ»¸öµØÖ·µ¥Î»
+	//åç§»ä¸€ä¸ªåœ°å€å•ä½
 	int *moveEnd = end_ - 1;
 	int *moveJ = j_;
-	//¼ÇÂ¼ÉÏÒ»¸öÖµ
+	//è®°å½•ä¸Šä¸€ä¸ªå€¼
 	int preMoveJ = *moveEnd;
-	//µ±ºóÒ»¸öÔªËØµÈÓÚÈ«Ò»¸öÔªËØÖµÊ±Í£Ö¹
+	//å½“åä¸€ä¸ªå…ƒç´ ç­‰äºå…¨ä¸€ä¸ªå…ƒç´ å€¼æ—¶åœæ­¢
 	while(*moveJ != preMoveJ && *moveJ != *moveEnd)
 	{
 		preMoveJ = *moveJ;
@@ -69,7 +75,7 @@ void util_reverse(int *j_, int *end_)
 		--moveEnd;
 	}
 }
-//STLËùÓĞpermutation½á¹û
+//STLæ‰€æœ‰permutationç»“æœ
 void all_permutation(int arr[],int n)
 {
 	int i;
@@ -80,7 +86,7 @@ void all_permutation(int arr[],int n)
 	}while(next_permutation(arr + 1,arr + n));
 }
 
-//¶ÑÅÅĞò
+//å †æ’åº
 void sift(int r[],int k,int m)
 {
 	int i,j;
@@ -97,7 +103,7 @@ void sift(int r[],int k,int m)
 			int tem = r[j];
 		    r[j] = r[i];
 			r[i] = tem;
-			//Ö»Ğè¿¼ÂÇµ÷»»µÄ½øĞĞÍÆÅÅĞòµ÷Õı£¬ÒòÎªÎ´µ÷»»µÄ±¾À´¾ÍÊÇÅÅĞòºÃµÄ
+			//åªéœ€è€ƒè™‘è°ƒæ¢çš„è¿›è¡Œæ¨æ’åºè°ƒæ­£ï¼Œå› ä¸ºæœªè°ƒæ¢çš„æœ¬æ¥å°±æ˜¯æ’åºå¥½çš„
 			i = j;
 			j = 2 * i;
 		}
@@ -109,12 +115,12 @@ void heapSort(int r[],int n)
 {
 	int j = n;
 	int i = n / 2;  
-	while(i >= 1)  //³õÊ¼½¨¶Ñ£¬´Ó×îºóÒ»¸ö·ÖÖ§½áµãÍù¸ù½Úµãµ÷Õû
+	while(i >= 1)  //åˆå§‹å»ºå †ï¼Œä»æœ€åä¸€ä¸ªåˆ†æ”¯ç»“ç‚¹å¾€æ ¹èŠ‚ç‚¹è°ƒæ•´
 	{
 		sift(r,i,n);
 		i--;
 	}
-	while(j > 1) //ÖØ¸´Ö´ĞĞÒÆ×ß¶Ñ¶¥¼°ÖØ½¨¶ÑµÄ²Ù×÷
+	while(j > 1) //é‡å¤æ‰§è¡Œç§»èµ°å †é¡¶åŠé‡å»ºå †çš„æ“ä½œ
 	{
 		r[0] = r[1];
 		r[1] = r[j];
