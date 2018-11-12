@@ -79,9 +79,9 @@ public class BTAllNodeDistanceK<T> {
 
     /**
      * @param root（1）满足root.val==target.val （2）祖先结点 K=K-向上回溯祖先的数目
-     * @param list                          添加满足值
-     * @param K                             距离K的路径
-     *                                      实现根据以树根节点root进行中序遍历查找距离K路径的结点，并把满足的结点的值添加进list
+     * @param list  添加满足值
+     * @param K     距离K的路径
+     *  实现根据以树根节点root进行中序遍历查找距离K路径的结点，并把满足的结点的值添加进list
      */
     private void getNodesFromChildren(TreeNode<T> root, List<T> list, int K) {
         if (root == null)
@@ -189,6 +189,7 @@ public class BTAllNodeDistanceK<T> {
         }
     }
 
+    /*******************************第二种解决方案**********************************/
     public List<T> distanceK1(TreeNode<T> root, TreeNode<T> target, int K) {
         parents = new HashMap();
         //dfs(root, parents);

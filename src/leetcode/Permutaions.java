@@ -70,9 +70,9 @@ public class Permutaions {
         num2.add(2);
         num2.add(3);
         List permutions2 = testP.permuteS2(num2);
-//        Iterator it2 = permutions2.iterator();
+//    Iterator it2 = permutions2.iterator();
 //        while (it2.hasNext()){
-//            System.out.println(it2.next());
-//        }
-    }
+//        System.out.println(it2.next());
+//    }
+}
 }
