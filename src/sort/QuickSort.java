@@ -3,8 +3,11 @@ package sort;
 import sort.Utils.UtilArrayItemSwap;
 
 public class QuickSort {
+     
+     
      /**
-      * 第一种方法书写错误
+      * 第一种方法
+      *   自我书写错误
       * - 未设置递归基，导致递归无限循环
       * - 未真正在一趟把排序的数据分割成独立的两部分，即为达到i<j
       *
@@ -23,7 +26,7 @@ public class QuickSort {
             while (i < j && key <= source[j]) {
                 --j;
             }
-            source[i]=source[j];
+            source[i] = source[j];
             while (i < j && key >= source[i]) {
                 ++i;
             }
@@ -33,6 +36,8 @@ public class QuickSort {
         sort(source, left, i - 1);
         sort(source, i + 1, right);
     }
+     
+     
     /**
      * 第二种方法
      * @param targetArr 实现Comparable接口的泛型数组
@@ -75,6 +80,10 @@ public class QuickSort {
         }
         return targetArr;
     }
+     
+    /**
+     *简单测试
+     */
     public static void main(String[] args) {
         Integer[] sour= {2,7,8,9,4,10,4,6};
         QuickSort qs=new QuickSort();
