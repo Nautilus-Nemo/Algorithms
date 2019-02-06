@@ -63,28 +63,41 @@ public class Combinations {
     }
     /***递回法***/
 
+    /***迭代法，固定k**/
+    public static void iterate_fix_k(final int n){
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int k = j + 1; k < n; k++) {
+                    System.out.println(i + " " + j + " " + k );
+                }
+            }
+        }
+    }
+    /***迭代法，固定k**/
+
+
     public static void main(String[] args) {
 /*        *//***循环法***/
-        System.out.println("Comb(n,k):");
-        Scanner read = new Scanner(System.in);
-        final int n = read.nextInt();
-        final int k = read.nextInt();
-        //杜绝掉非法参数
-        if (n < k && k < 0){
-            throw new IllegalArgumentException("n < k or k < 0");
-        }
-        Combinations testComb = new Combinations();
-        int[] comb = new int[n];
-        //初始化
-        for (int i = 0; i < k; i++) {
-            comb[i] = i;
-        }
-
-        do {
-            for (int i = 0; i < k; System.out.print((++i < k)?',':'\n') ) {
-                System.out.print(comb[i]);
-            }
-        }while (testComb.next_comb(comb,n,k) == 1);
+//        System.out.println("Comb(n,k):");
+//        Scanner read = new Scanner(System.in);
+//        final int n = read.nextInt();
+//        final int k = read.nextInt();
+//        //杜绝掉非法参数
+//        if (n < k && k < 0){
+//            throw new IllegalArgumentException("n < k or k < 0");
+//        }
+//        Combinations testComb = new Combinations();
+//        int[] comb = new int[n];
+//        //初始化
+//        for (int i = 0; i < k; i++) {
+//            comb[i] = i;
+//        }
+//
+//        do {
+//            for (int i = 0; i < k; System.out.print((++i < k)?',':'\n') ) {
+//                System.out.print(comb[i]);
+//            }
+//        }while (testComb.next_comb(comb,n,k) == 1);
         /***循环法***/
 
         /***递回法***/
@@ -100,5 +113,9 @@ public class Combinations {
 //        int[] comb = new int[k];
 //        testComb.calculate(0,comb,n,k);
         /***递回法***/
+
+        /***迭代法，固定k**/
+        iterate_fix_k(5);
+        /***迭代法，固定k**/
     }
 }
